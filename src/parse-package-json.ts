@@ -10,12 +10,6 @@ interface PackageJson {
   devDependencies?: { [name: string]: string }
 }
 
-export interface PackageInfo {
-  moduleName: string
-  rootDir: string
-  dependencies: Set<string>
-}
-
 export async function parsePackageJson(filename: string): Promise<PackageInfo> {
   const pkg = await getResultPromise<PackageJson>(readJSON(filename))
   if (!pkg) throw new IllegalPackageJson()

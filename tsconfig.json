@@ -1,11 +1,22 @@
 {
-  "extends": "./tsconfig.base.json"
+  "compilerOptions": {
+    "target": "ES2019"
+  , "module": "CommonJS"
+  , "strict": true
+  , "jsx": "react-jsx"
+  , "esModuleInterop": true
+  , "declaration": true
+  , "removeComments": true
+  , "sourceMap": true
+  , "outDir": "lib"
+  , "baseUrl": "."
+  , "paths": {
+      "@src/*": ["src/*"]
+    , "@test/*": ["__tests__/*"]
+    , "@components/*": ["src/components/*"]
+    }
+  }
 , "include": [
     "src"
-  , "__tests__"
-  ]
-, "exclude": [
-    "node_modules"
-  , "lib"
   ]
 }

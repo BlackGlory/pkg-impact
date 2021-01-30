@@ -2,7 +2,7 @@ import * as path from 'path'
 import { findAllDirnames, isFile, isReadable } from 'extra-filesystem'
 import { toArrayAsync } from 'iterable-operator'
 import { map, filter } from 'extra-promise'
-import { parsePackageJson, IllegalPackageJson, PackageInfo } from './parse-package-json'
+import { parsePackageJson, IllegalPackageJson } from './parse-package-json'
 import { isFilled } from 'ts-is-present'
 
 export async function findAllPackages(root: string): Promise<PackageInfo[]> {
