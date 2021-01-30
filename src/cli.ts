@@ -1,19 +1,24 @@
 #!/usr/bin/env node
 import { program } from 'commander'
-import { findAllPackages } from './find-all-packages'
-import { serve } from './serve'
+import { findAllLocalPackages } from './find-all-local-packages'
+import { findAllImpactedLocalPackages } from './find-all-impacted-packages'
+import { PackageInfo } from './types'
+import { HashSet } from '@blackglory/structures'
 
 program
-  .name('pkgraph')
+  .name(require('../package.json').name)
   .version(require('../package.json').version)
   .description(require('../package.json').description)
-  .arguments('<roots...>')
-  .action(async (roots: string[]) => {
-    const pkgList: PackageInfo[] = []
+  .arguments('<releasedPackage> <roots...>')
+  .action(async (releasedPackage, roots: string[]) => {
+    const localPkgs = new HashSet<PackageInfo>(x => x.moduleName + x.rootDir)
     for (const root of roots) {
-      pkgList.push(...await findAllPackages(root))
+      for (const pkg of await findAllLocalPackages(root)) {
+        localPkgs.add(pkg)
+      }
     }
 
-    serve(pkgList)
+    const pkgs = findAllImpactedLocalPackages(releasedPackage, Array.from(localPkgs))
+    pkgs.forEach(x => console.log(x.moduleName))
   })
   .parse()

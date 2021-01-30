@@ -4,8 +4,9 @@ import { toArrayAsync } from 'iterable-operator'
 import { map, filter } from 'extra-promise'
 import { parsePackageJson, IllegalPackageJson } from './parse-package-json'
 import { isFilled } from 'ts-is-present'
+import { PackageInfo } from './types'
 
-export async function findAllPackages(root: string): Promise<PackageInfo[]> {
+export async function findAllLocalPackages(root: string): Promise<PackageInfo[]> {
   const possibleProjectDirnames = [root, ...await toArrayAsync(findAllDirnames(root, isPossibleProject))]
   const projectDirnames = await filter(possibleProjectDirnames, hasPackageJson)
   const packageFilenames = projectDirnames.map(x => path.join(x, 'package.json'))

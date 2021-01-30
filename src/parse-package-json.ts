@@ -3,6 +3,7 @@ import * as path from 'path'
 import { CustomError } from '@blackglory/errors'
 import { isObject } from '@blackglory/types'
 import { getResultPromise } from 'return-style'
+import { PackageInfo } from './types'
 
 interface PackageJson {
   name?: string

@@ -3,8 +3,6 @@
     "target": "ES2019"
   , "module": "CommonJS"
   , "strict": true
-  , "jsx": "react-jsx"
-  , "esModuleInterop": true
   , "declaration": true
   , "removeComments": true
   , "sourceMap": true
