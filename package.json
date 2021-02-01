@@ -1,7 +1,7 @@
 {
   "name": "pkg-impact",
   "version": "0.1.0",
-  "description": "",
+  "description": "Know which local packages need to be upgraded",
   "keywords": [],
   "bin": {
     "pkg-impact": "lib/cli.js"

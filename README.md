@@ -1,5 +1,7 @@
 # pkg-impact
 
+Know which local packages need to be upgraded.
+
 ## Motivation
 
 When you have dozens of interdependent Node.js projects,
