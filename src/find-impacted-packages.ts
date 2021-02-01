@@ -1,12 +1,16 @@
 import { Queue } from '@blackglory/structures'
 import { PackageInfo } from './types'
 
-export function findAllImpactedLocalPackages(sourcePakgeName: string, localPackages: PackageInfo[]): PackageInfo[] {
+interface Options {
+  includeDev: boolean
+}
+
+export function findImpactedPackages(packages: PackageInfo[], sourcePackageName: string, { includeDev }: Options): PackageInfo[] {
   const result: PackageInfo[] = []
   const checked = new Set<PackageInfo>()
 
   const searchQueue = new Queue<PackageInfo>()
-  const neighbors = Array.from(getNeighborsOfLocalPackages(sourcePakgeName))
+  const neighbors = Array.from(getNeighborsOfLocalPackages(sourcePackageName))
   neighbors.forEach(x => checked.add(x))
   result.push(...neighbors)
   searchQueue.enqueue(...neighbors)
@@ -24,14 +28,24 @@ export function findAllImpactedLocalPackages(sourcePakgeName: string, localPacka
 
   return result
 
-  function getNeighborsOfLocalPackages(pkgName: string): PackageInfo[] {
-    return localPackages.filter(isDependsOn(pkgName))
+  function* getNeighborsOfLocalPackages(pkgName: string): Iterable<PackageInfo> {
+    yield* packages.filter(isDependsOn(pkgName))
+    if (includeDev) yield* packages.filter(isDevDependsOn(pkgName))
   }
 }
 
 function isDependsOn(pkgName: string): (pkg: PackageInfo) => boolean {
   return (pkg: PackageInfo) => {
     for (const dep of pkg.dependencies) {
+      if (dep === pkgName) return true
+    }
+    return false
+  }
+}
+
+function isDevDependsOn(pkgName: string): (pkg: PackageInfo) => boolean {
+  return (pkg: PackageInfo) => {
+    for (const dep of pkg.devDependencies) {
       if (dep === pkgName) return true
     }
     return false

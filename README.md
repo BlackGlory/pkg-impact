@@ -48,5 +48,12 @@ yarn global add "file:$(pwd)"
 ## Usage
 
 ```sh
-pkg-impact 'the-package-name-you-just-released' <roots...>
+Usage: pkg-impact [options] <releasedPackage> <roots...>
+
+Know which local packages need to be upgraded
+
+Options:
+  -V, --version  output the version number
+  --include-dev  check devDependencies
+  -h, --help     display help for command
 ```

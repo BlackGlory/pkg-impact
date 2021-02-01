@@ -20,5 +20,5 @@ export async function findAllLocalPackages(root: string): Promise<PackageInfo[]>
       throw e
     }
   })
-  return result.filter((isFilled))
+  return result.filter(isFilled)
 }

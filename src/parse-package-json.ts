@@ -18,11 +18,12 @@ export async function parsePackageJson(filename: string): Promise<PackageInfo> {
 
   const moduleName = pkg.name
   const rootDir = path.dirname(filename)
-  const dependencies = new Set<string>()
-  if (isObject(pkg.dependencies)) Object.keys(pkg.dependencies).forEach(x => dependencies.add(x))
-  if (isObject(pkg.devDependencies)) Object.keys(pkg.devDependencies).forEach(x => dependencies.add(x))
+  const dependencies: string[] = []
+  const devDependencies: string[] = []
+  if (isObject(pkg.dependencies)) Object.keys(pkg.dependencies).forEach(x => dependencies.push(x))
+  if (isObject(pkg.devDependencies)) Object.keys(pkg.devDependencies).forEach(x => devDependencies.push(x))
 
-  return { moduleName, rootDir, dependencies }
+  return { moduleName, rootDir, dependencies, devDependencies }
 }
 
 export class IllegalPackageJson extends CustomError {}
