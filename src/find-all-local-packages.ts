@@ -1,15 +1,17 @@
-import * as path from 'path'
-import { findAllDirnames, isFile, isReadable } from 'extra-filesystem'
-import { toArrayAsync } from 'iterable-operator'
-import { map, filter } from 'extra-promise'
+import { map, promisify } from 'extra-promise'
 import { parsePackageJson, IllegalPackageJson } from './parse-package-json'
 import { isFilled } from 'ts-is-present'
 import { PackageInfo } from './types'
+import { glob } from 'glob'
+
+const find = promisify<string[]>(glob)
 
 export async function findAllLocalPackages(root: string): Promise<PackageInfo[]> {
-  const possibleProjectDirnames = [root, ...await toArrayAsync(findAllDirnames(root, isPossibleProject))]
-  const projectDirnames = await filter(possibleProjectDirnames, hasPackageJson)
-  const packageFilenames = projectDirnames.map(x => path.join(x, 'package.json'))
+  const packageFilenames = await find('**/package.json', {
+    cwd: root
+  , ignore: ['**/node_modules/**', '**/.git/**']
+  , absolute: true
+  })
   const result = await map(packageFilenames, async filename => {
     try {
       return await parsePackageJson(filename)
@@ -19,28 +21,4 @@ export async function findAllLocalPackages(root: string): Promise<PackageInfo[]>
     }
   })
   return result.filter((isFilled))
-}
-
-async function hasPackageJson(dirname: string): Promise<boolean> {
-  const packageFilename = path.join(dirname, 'package.json')
-  return await isReadable(packageFilename)
-      && await isFile(packageFilename)
-}
-
-function isPossibleProject(dirname: string) {
-  if (inNodeModules(dirname)) return false
-  if (inDotGit(dirname)) return false
-  return true
-}
-
-function inNodeModules(dir: string): boolean {
-  return splitPath(dir).includes('node_modules')
-}
-
-function inDotGit(dir: string): boolean {
-  return splitPath(dir).includes('.git')
-}
-
-function splitPath(pathname: string): string[] {
-  return path.resolve(pathname).split('/')
 }
