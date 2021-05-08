@@ -1,4 +1,4 @@
-import { readJSON } from 'fs-extra'
+import { readJSONFile } from 'extra-filesystem'
 import * as path from 'path'
 import { CustomError } from '@blackglory/errors'
 import { isObject } from '@blackglory/types'
@@ -12,7 +12,7 @@ interface PackageJson {
 }
 
 export async function parsePackageJson(filename: string): Promise<PackageInfo> {
-  const pkg = await getResultPromise<PackageJson>(readJSON(filename))
+  const pkg = await getResultPromise<PackageJson>(readJSONFile(filename))
   if (!pkg) throw new IllegalPackageJson()
   if (!pkg.name) throw new IllegalPackageJson()
 

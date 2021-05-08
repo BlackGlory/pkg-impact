@@ -51,8 +51,8 @@
     "@blackglory/structures": "^0.1.14",
     "@blackglory/types": "^0.4.1",
     "commander": "^7.2.0",
+    "extra-filesystem": "^0.2.9",
     "extra-promise": "^0.16.2",
-    "fs-extra": "^9.1.0",
     "glob": "^7.1.6",
     "return-style": "^0.12.3",
     "ts-is-present": "^1.2.1"
