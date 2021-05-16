@@ -1,6 +1,6 @@
 {
   "name": "pkg-impact",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Know which local packages need to be upgraded",
   "keywords": [],
   "bin": {
