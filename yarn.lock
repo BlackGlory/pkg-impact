@@ -64,6 +64,14 @@
     "@blackglory/errors" "^1.1.2"
     hotypes "^0.2.1"
 
+"@blackglory/structures@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@blackglory/structures/-/structures-0.2.1.tgz#afab7c5f4cc64f4614aff6c609ad542d9f6796d0"
+  integrity sha512-Qtrw+64zlsIJEP74yfbl3x8h9IkkuevBO+u2DnhVglbanuHG+i8Yl6bhiTCESwMutUDgqeY83yYRpfEgrDPh7g==
+  dependencies:
+    "@blackglory/errors" "^1.1.2"
+    hotypes "^0.2.1"
+
 "@blackglory/types@^0.4.1":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@blackglory/types/-/types-0.4.1.tgz#b21ff92779541d3087ae08025669647d720fa420"
@@ -1412,7 +1420,7 @@ extra-filesystem@^0.3.0:
     extra-promise "^0.16.4"
     tmp-promise "^3.0.2"
 
-extra-generator@^0.2.4:
+extra-generator@^0.2.4, extra-generator@^0.2.5:
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/extra-generator/-/extra-generator-0.2.5.tgz#34b9d6053fc47c1f98b29c6bde3db759a6c8e988"
   integrity sha512-p1Be8fgTrWlnZH4XqT6zQJExcHGMW7uddSeFQYPKuK2+tpBixi0w/AUNgJ5KGU68r+s7CcaplovJ/yjfqmyPPQ==
@@ -1439,6 +1447,22 @@ extra-promise@^0.16.4:
     eventemitter3 "^4.0.7"
     extra-fetch "^1.7.1"
     extra-generator "^0.2.4"
+    iterable-operator "^0.13.6"
+    reflect-metadata "^0.1.13"
+    return-style "^0.12.3"
+
+extra-promise@^0.16.5:
+  version "0.16.5"
+  resolved "https://registry.yarnpkg.com/extra-promise/-/extra-promise-0.16.5.tgz#1732349be48c5ea6c28c075f275c2837108693f9"
+  integrity sha512-MsM2lKLEeH0IOhEvTUJqIKEXZ+N5x563gZmWundDGtssuPtLod6Bce4knP6VvAMF3Uzwv2b/09+s0RMa/p+Rwg==
+  dependencies:
+    "@blackglory/errors" "^1.1.2"
+    "@blackglory/go" "^0.1.0"
+    "@blackglory/structures" "^0.2.0"
+    "@blackglory/types" "^0.4.2"
+    eventemitter3 "^4.0.7"
+    extra-fetch "^1.7.1"
+    extra-generator "^0.2.5"
     iterable-operator "^0.13.6"
     reflect-metadata "^0.1.13"
     return-style "^0.12.3"
@@ -2186,6 +2210,15 @@ iterable-operator@^0.13.6:
   dependencies:
     "@blackglory/go" "^0.1.0"
     "@blackglory/types" "^0.4.1"
+
+iterable-operator@^0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/iterable-operator/-/iterable-operator-0.14.0.tgz#94a982e2a3ebee03ae52df08fd8c5928ee742b41"
+  integrity sha512-WqLXpr9mJvHzGx86QzcJyJi2u/F7MGlDBxTr85y9z/y+nHNLNv8DT405FOGhCxx1f7MaYNZHmCMCuL31mOc9eA==
+  dependencies:
+    "@blackglory/errors" "^1.1.2"
+    "@blackglory/go" "^0.1.0"
+    "@blackglory/types" "^0.4.2"
 
 js-tokens@^4.0.0:
   version "4.0.0"
