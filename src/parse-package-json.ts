@@ -3,7 +3,7 @@ import * as path from 'path'
 import { CustomError } from '@blackglory/errors'
 import { isObject } from '@blackglory/types'
 import { getResultPromise } from 'return-style'
-import { PackageInfo } from './types'
+import { IPackageInfo } from './types'
 
 interface PackageJson {
   name?: string
@@ -11,7 +11,7 @@ interface PackageJson {
   devDependencies?: { [name: string]: string }
 }
 
-export async function parsePackageJson(filename: string): Promise<PackageInfo> {
+export async function parsePackageJson(filename: string): Promise<IPackageInfo> {
   const pkg = await getResultPromise<PackageJson>(readJSONFile(filename))
   if (!pkg) throw new IllegalPackageJson()
   if (!pkg.name) throw new IllegalPackageJson()

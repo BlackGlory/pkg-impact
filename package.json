@@ -47,12 +47,13 @@
   },
   "dependencies": {
     "@blackglory/errors": "^1.1.2",
-    "@blackglory/structures": "^0.1.14",
+    "@blackglory/structures": "^0.2.0",
     "@blackglory/types": "^0.4.2",
     "commander": "^7.2.0",
     "extra-filesystem": "^0.3.0",
     "extra-promise": "^0.16.4",
     "glob": "^7.1.7",
+    "iterable-operator": "^0.13.6",
     "return-style": "^0.12.3",
     "ts-is-present": "^1.2.1"
   }

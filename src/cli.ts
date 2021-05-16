@@ -2,8 +2,9 @@
 import { program } from 'commander'
 import { findAllLocalPackages } from './find-all-local-packages'
 import { findImpactedPackages } from './find-impacted-packages'
-import { PackageInfo } from './types'
+import { IPackageInfo } from './types'
 import { HashSet } from '@blackglory/structures'
+import { toArray } from 'iterable-operator'
 
 program
   .name(require('../package.json').name)
@@ -15,7 +16,7 @@ program
     const opts = program.opts()
     const includeDev: boolean = opts.includeDev
 
-    const localPkgs = new HashSet<PackageInfo>(x => x.moduleName + x.rootDir)
+    const localPkgs = new HashSet<IPackageInfo>(x => x.moduleName + x.rootDir)
     for (const root of roots) {
       for (const pkg of await findAllLocalPackages(root)) {
         localPkgs.add(pkg)
@@ -23,7 +24,7 @@ program
     }
 
     const pkgs = findImpactedPackages(
-      Array.from(localPkgs)
+      toArray(localPkgs)
     , releasedPackage
     , { includeDev }
     )

@@ -1,12 +1,12 @@
 import { map, promisify } from 'extra-promise'
 import { parsePackageJson, IllegalPackageJson } from './parse-package-json'
 import { isFilled } from 'ts-is-present'
-import { PackageInfo } from './types'
+import { IPackageInfo } from './types'
 import { glob } from 'glob'
 
 const find = promisify<string[]>(glob)
 
-export async function findAllLocalPackages(root: string): Promise<PackageInfo[]> {
+export async function findAllLocalPackages(root: string): Promise<IPackageInfo[]> {
   const packageFilenames = await find('**/package.json', {
     cwd: root
   , ignore: ['**/node_modules/**', '**/.git/**']
