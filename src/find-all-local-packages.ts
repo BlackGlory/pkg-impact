@@ -4,7 +4,7 @@ import { isFilled } from 'ts-is-present'
 import { IPackageInfo } from './types'
 import { glob } from 'glob'
 
-const find = promisify<string[]>(glob)
+const find = promisify(glob)
 
 export async function findAllLocalPackages(root: string): Promise<IPackageInfo[]> {
   const packageFilenames = await find('**/package.json', {
